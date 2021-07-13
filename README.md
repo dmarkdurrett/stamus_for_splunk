@@ -5,7 +5,7 @@
 ## Introduction
 
 Stamus Networks App for Splunk® is an application designed for Suricata sensors users,
-including SELKS users, and Scirius Security Platform users.
+including SELKS users, and Stamus ND/NDR (formerly known as Scirius Security Platform) users.
 
 
 ## Installation
@@ -15,7 +15,7 @@ You may have to install the [Timeline App](https://splunkbase.splunk.com/app/312
 the visualizations.
 
 After installing the application, you can directly use it if you are a Suricata sensors user and
-don't have a Scirius Security Platform (SSP).
+don't have a Stamus ND/NDR.
 
 ##  Configuration
 
@@ -29,7 +29,7 @@ definition = index=mycustomindex
 iseval=0
 ```
 
-Scirius Security Platform users need to setup the connectivity with their SSP.
+Stamus ND/NDR users need to setup the connectivity with their Stamus Security Platform (SSP).
 
 To do so, you need to create a file `local/ssp.conf` under the application directory (`/opt/splunk/etc/apps/stamus_for_splunk` usually)
 and setup the following:
@@ -41,14 +41,14 @@ base_url = https://SSP_ADDRESS
 check_tls = no
 ```
 
-The `SSP_TOKEN` can be generated from Scirius Security Platform by going to `Account Settings` via the user icon on the top right
+The `SSP_TOKEN` can be generated from Stamus Security Platform by going to `Account Settings` via the user icon on the top right
 and selecting `Edit token`. Only read access is necessary so a user with low privilege can be used.
 
 ## Usage
 
 ### Dashboards and Reports
 
-Dashboards and reports containing Suricata in their name are designed for Suricata sensors and do not require a Scirius Security Platform.
+Dashboards and reports containing Suricata in their name are designed for Suricata sensors and do not require a Stamus Security Platform.
 
 The others dashboards require connectivity or data coming from a SSP installation.
 
@@ -56,7 +56,7 @@ The others dashboards require connectivity or data coming from a SSP installatio
 
 #### Concept
 
-Scirius Security Platform features a Host Identification module that builds identity cards of IP addresses seen
+Stamus ND/NDR features a Host Identification module that builds identity cards of IP addresses seen
 in the network without storing all raw events. This provides a concise view of the major attributes that can be linked
 to an IP address.
 
@@ -73,7 +73,7 @@ precisely when a username or a HTTP user agent was first seen on a given IP addr
 
 #### Host ID search
 
-The App adds a `snhostsearch` command that queries Scirius Security Platform REST API to fetch Host ID entries
+The App adds a `snhostsearch` command that queries Stamus Security Platform REST API to fetch Host ID entries
 matching a filter. The following are examples of filters that may be applied to the Host ID module:
 
 To retrieve ALL Host ID entries, simply enter:
@@ -142,7 +142,7 @@ event_type="stamus" | lookup snhostlookup ip as stamus.asset | stats min(timesta
 
 #### Concept
 
-The Scirius Threat Radar inside SSP generates events with type `stamus` that are high fidelity events
+The Stamus NDR feature set inside SSP generates events with type `stamus` that are high fidelity events
 generated from signatures or custom algorithms. These events are also mapped to the cyber kill chain to identify the phase of the attack.
 
 #### Thread ID lookup
@@ -204,8 +204,8 @@ Initial release.
 
 Features:
 
-- dashboards for Suricata and Scirius Security Platform from Stamus Networks
-- snhostsearch: search host identification entries in Scirius Security Platform 
+- dashboards for Suricata and Stamus ND/NDR from Stamus Networks
+- snhostsearch: search host identification entries in Stamus Security Platform 
 - snhostfilter: filter query on host matching a request done in host identification entries
 - snthreatfilter: resolves Stamus threat id to Stamus threat name
 - snhostlookup: do ip to hostname resolution and reverse using host identification data
